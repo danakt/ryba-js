@@ -1,0 +1,30 @@
+{
+  "name": "ryba-gen",
+  "version": "0.0.1",
+  "description": "Генератор рыбы",
+  "main": "bin/index.js",
+  "scripts": {
+    "test": "mocha -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danakt/ryba-gen.git"
+  },
+  "keywords": [
+    "рыба",
+    "генератор",
+    "russian",
+    "text-generator",
+    "text",
+    "generator"
+  ],
+  "author": "Danakt Frost <mail@danakt.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danakt/ryba-gen/issues"
+  },
+  "homepage": "https://github.com/danakt/ryba-gen#readme",
+  "dependencies": {
+    "text-generator-core": "0.0.2"
+  }
+}
