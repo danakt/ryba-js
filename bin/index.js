@@ -1,6 +1,5 @@
 const fs        = require('fs')
 const getText   = require('text-generator-core')
-const { prepareLinks, getTemplate, makeSentence } = getText
 
 const templates = require('./templates')
 const flections = require('./patterns')
@@ -9,7 +8,7 @@ const flections = require('./patterns')
 let readFile = filename => (
     fs.readFileSync('./links/' + filename, 'utf-8')
 )
-let links = prepareLinks({
+let links = {
     НАЧ_ВВОД:   [ readFile('нач_ввод.yml') ],
     ВВОД:       [ readFile('ввод.yml') ],
     СУЩ:        [ readFile('сущ.yml') ],
@@ -18,7 +17,7 @@ let links = prepareLinks({
     ДЕЕПРИЧ:    [ readFile('дееприч.yml') ],
     КРАТК_ПРИЛ: [ readFile('кратк_прил.yml') ],
     УТВЕРЖД:    [ readFile('утвержд.yml') ],
-})
+}
 
 // Экспорт ---------------------------------------------------------------------
 let options = { links, templates, flections }
