@@ -1,5 +1,5 @@
 {
-  "name": "ryba-gen",
+  "name": "ryba.js",
   "version": "0.0.1",
   "description": "Генератор рыбы",
   "main": "bin/index.js",
