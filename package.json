@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danakt/ryba-gen.git"
+    "url": "git+https://github.com/danakt/ryba-js.git"
   },
   "keywords": [
     "рыба",
@@ -21,9 +21,9 @@
   "author": "Danakt Frost <mail@danakt.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/danakt/ryba-gen/issues"
+    "url": "https://github.com/danakt/ryba-js/issues"
   },
-  "homepage": "https://github.com/danakt/ryba-gen#readme",
+  "homepage": "https://github.com/danakt/ryba-js#readme",
   "dependencies": {
     "text-generator-core": "0.0.3"
   },
