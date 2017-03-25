@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/danakt/ryba-gen#readme",
   "dependencies": {
-    "text-generator-core": "0.0.2"
+    "text-generator-core": "0.0.3"
   }
 }
