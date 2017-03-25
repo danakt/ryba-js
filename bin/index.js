@@ -21,4 +21,10 @@ let links = {
 
 // Экспорт ---------------------------------------------------------------------
 let options = { links, templates, flections }
-module.exports = num => getText(num, options)
+module.exports = num => {
+    if (num == null) {
+        num = 1
+    }
+
+    return getText(Math.max(num, 0), options)
+}
