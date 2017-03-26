@@ -14,5 +14,9 @@ npm i ryba-js
 ```js
 const ryba = require('ryba-js')
 
+// Для генерации одного преложения
 console.log(ryba())
+
+// Для генерации определённого количества предложений
+console.log(ryba(15))
 ```
