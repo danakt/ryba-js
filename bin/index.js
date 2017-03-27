@@ -1,12 +1,13 @@
 const fs        = require('fs')
 const getText   = require('text-generator-core')
+const path      = require('path')
 
 const templates = require('./templates')
 const flections = require('./patterns')
 
 // Списки слов -----------------------------------------------------------------
 let readFile = filename => (
-    fs.readFileSync('./links/' + filename, 'utf-8')
+    fs.readFileSync(path.resolve(__dirname, '../links/' + filename), 'utf-8')
 )
 let links = {
     НАЧ_ВВОД:   [ readFile('нач_ввод.yml') ],
