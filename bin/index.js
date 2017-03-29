@@ -6,18 +6,15 @@ const templates = require('./templates')
 const flections = require('./patterns')
 
 // Списки слов -----------------------------------------------------------------
-let readFile = filename => (
-    fs.readFileSync(path.resolve(__dirname, '../links/' + filename), 'utf-8')
-)
 let links = {
-    НАЧ_ВВОД:   [ readFile('нач_ввод.yml') ],
-    ВВОД:       [ readFile('ввод.yml') ],
-    СУЩ:        [ readFile('сущ.yml') ],
-    ГЛАГ:       [ readFile('глаг.yml') ],
-    ПРИЛ:       [ readFile('прил.yml') ],
-    ДЕЕПРИЧ:    [ readFile('дееприч.yml') ],
-    КРАТК_ПРИЛ: [ readFile('кратк_прил.yml') ],
-    УТВЕРЖД:    [ readFile('утвержд.yml') ],
+    НАЧ_ВВОД:   [ require('../links/нач_ввод') ],
+    ВВОД:       [ require('../links/ввод') ],
+    СУЩ:        [ require('../links/сущ') ],
+    ГЛАГ:       [ require('../links/глаг') ],
+    ПРИЛ:       [ require('../links/прил') ],
+    ДЕЕПРИЧ:    [ require('../links/дееприч') ],
+    КРАТК_ПРИЛ: [ require('../links/кратк_прил') ],
+    УТВЕРЖД:    [ require('../links/утвержд') ],
 }
 
 // Экспорт ---------------------------------------------------------------------
