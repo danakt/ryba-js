@@ -1,6 +1,6 @@
 {
   "name": "ryba-js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Russian filler text generator",
   "main": "bin/index.js",
   "scripts": {
