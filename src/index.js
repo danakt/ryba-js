@@ -1,4 +1,3 @@
-const fs        = require('fs')
 const getText   = require('text-generator-core')
 const path      = require('path')
 
