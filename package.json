@@ -5,7 +5,7 @@
   "main": "bin/index.js",
   "scripts": {
     "babel": "babel src --out-dir bin",
-    "test": "mocha -c"
+    "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register -c"
   },
   "repository": {
     "type": "git",
