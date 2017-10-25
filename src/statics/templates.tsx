@@ -22,21 +22,22 @@ export const template0 = (store: DictionariesStore): SentenceElement => (
       <fragment>, <word type="вводная фраза" store={store}/>,</fragment>
     }
 
-    {getRandomItemFromArray([
-      <fragment><word type="глагол" store={store}/></fragment>,
+    {randomBoolean(1 / 7) &&
       (
         <fragment>
           , <word type="деепричастие" store={store}/>,
           <word type="глагол" store={store}/>
         </fragment>
-      ),
-      (
-        <fragment>
-          <word type="глагол" store={store}/>
-          и <word type="глагол" store={store}/>
-        </fragment>
-      ),
-    ])}
+      ) || getRandomItemFromArray([
+        <fragment><word type="глагол" store={store}/></fragment>,
+        (
+          <fragment>
+            <word type="глагол" store={store}/>
+            и <word type="глагол" store={store}/>
+          </fragment>
+        ),
+      ])
+    }
 
     <fragment>
       <word type="существительное"
@@ -78,21 +79,22 @@ export const template1 = (store: DictionariesStore): SentenceElement => (
       <word id="word1" type="существительное" store={store}/>
     </fragment>
 
-    {getRandomItemFromArray([
-      <fragment><word type="глагол" store={store}/></fragment>,
+    {randomBoolean(1 / 7) &&
       (
         <fragment>
           , <word type="деепричастие" store={store}/>,
           <word type="глагол" store={store}/>
         </fragment>
-      ),
-      (
-        <fragment>
-          <word type="глагол" store={store}/>
-          и <word type="глагол" store={store}/>
-        </fragment>
-      ),
-    ])}
+      ) || getRandomItemFromArray([
+        <fragment><word type="глагол" store={store}/></fragment>,
+        (
+          <fragment>
+            <word type="глагол" store={store}/>
+            и <word type="глагол" store={store}/>
+          </fragment>
+        ),
+      ])
+    }
 
     <fragment>
       <word type="существительное"
