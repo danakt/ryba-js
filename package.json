@@ -1,6 +1,6 @@
 {
   "name": "ryba-js",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "Russian filler text generator",
   "main": "bin/index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/danakt/ryba-js#readme",
   "dependencies": {
-    "text-generator-core": "0.0.6"
+    "text-generator-core": "^1.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
