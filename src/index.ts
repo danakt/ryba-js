@@ -7,7 +7,7 @@ import {
 
 import * as templates                         from './statics/templates'
 import { transformRules }                     from './statics/rules'
-import { store }                              from './statics/stores'
+import { getStore }                           from './statics/stores'
 import { toPairs, getRandomItemFromArray }    from './utils'
 import { getItemTransformer, TansformRules }  from './transform'
 
@@ -58,4 +58,8 @@ export const getSentence = function getSentence(
   const sentence: string = generateSentence(sentenceTemplate, transformer)
 
   return sentence
+}
+
+for (let i = 0; i < 100; i++) {
+  console.log(getSentence(getStore(), getItemTransformer(transformRules)))
 }

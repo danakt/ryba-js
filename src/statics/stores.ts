@@ -1,31 +1,92 @@
-import {
-  DictionariesStore,
-  createStore,
-} from 'text-generator-core'
+import { createStore, DictionariesStore, DictionaryItem } from 'text-generator-core'
+import { mapObject } from '../utils'
 
 /**
- * Импортирование словарей
+ * Типы тем
  */
-import adjectives       from '../dictionaries/philosophy/adjectives'
-import conclusions      from '../dictionaries/philosophy/conclusions'
-import gerunds          from '../dictionaries/philosophy/gerunds'
-import initIntroductory from '../dictionaries/philosophy/initIntroductory'
-import introductory     from '../dictionaries/philosophy/introductory'
-import nouns            from '../dictionaries/philosophy/nouns'
-import shortAdjectives  from '../dictionaries/philosophy/shortAdjectives'
-import verbs            from '../dictionaries/philosophy/verbs'
+type DictionariesTopics = 'mathematics' | 'philosophy'
+type DictionariesTopicsDefault = 'default' | DictionariesTopics
 
 /**
- * Хранилище словарей
- * @type {DictionariesStore}
+ * Подгружает и возвращает словари по тематике
+ * @param {string} topic Тема
  */
-export const store: DictionariesStore = createStore({
-  'прилагательное':          adjectives,
-  'заключение':              conclusions,
-  'деепричастие':            gerunds,
-  'начальная вводная фраза': initIntroductory,
-  'вводная фраза':           introductory,
-  'существительное':         nouns,
-  'краткое прилагательное':  shortAdjectives,
-  'глагол':                  verbs,
-})
+export function loadStore(
+  topic: DictionariesTopicsDefault
+): DictionariesStore {
+  const types = [
+    ['прилагательное',          'adjectives'],
+    ['заключение',              'conclusions'],
+    ['деепричастие',            'gerunds'],
+    ['начальная вводная фраза', 'initIntroductory'],
+    ['вводная фраза',           'introductory'],
+    ['существительное',         'nouns'],
+    ['краткое прилагательное',  'shortAdjectives'],
+    ['глагол',                  'verbs'],
+  ]
+
+  const dictionariesReducer = function dictionariesReducer(
+    topic:  string,
+    acc:    { [type: string]: any[] },
+    type:   string[],
+  ) {
+    return {
+      ...acc,
+      [type[0]]: require(`../dictionaries/${topic}/${type[1]}`).default
+    }
+  }
+
+  const dictionaries: { [type: string]: any[] } = types.reduce(
+    dictionariesReducer.bind(null, topic),
+    {},
+  )
+
+  const store: DictionariesStore = createStore(dictionaries)
+  return store
+}
+
+/**
+ * Комбинирование словарей в хранилищах
+ * @param  {...DictionariesStore} list Список хранилищ для комбинирования
+ * @return {DictionariesStore}
+ */
+export function combineStores(...list: DictionariesStore[]): DictionariesStore {
+  const dictionariesReducer = function dictionariesReducer(
+    acc:  DictionariesStore,
+    dict: DictionariesStore,
+  ): DictionariesStore {
+    const mapperOfStore = function mapperOfStore(
+      dict:  DictionariesStore,
+      value: DictionaryItem[],
+      key: string
+    ): DictionaryItem[] {
+      return {
+        ...value,
+        ...dict[key],
+      }
+    }
+
+    return mapObject(mapperOfStore.bind(dict), acc)
+  }
+
+  const dictionaries: DictionariesStore = list.reduce(
+    dictionariesReducer,
+    {} as DictionariesStore
+  )
+
+  return dictionaries
+}
+
+/**
+ * Возвращает храниоища по указанным темам
+ * @param  {string[]} topics Список тем
+ * @return {DictionariesStore}
+ */
+export function getStore(
+  topics: DictionariesTopics[] = ['philosophy']
+): DictionariesStore {
+  const topicsWithdefault: DictionariesTopicsDefault[] = ['default', ...topics]
+  const dictionariesList = topicsWithdefault.map(item => loadStore(item))
+
+  return combineStores(...dictionariesList)
+}
