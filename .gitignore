@@ -1,5 +1,6 @@
 # dirs
-/node_modules
+.vscode/
+node_modules/
 
 # files
 npm-debug.log
