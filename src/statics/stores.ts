@@ -1,3 +1,4 @@
+import { reduce } from 'ramda'
 import { createStore, DictionariesStore, DictionaryItem } from 'text-generator-core'
 import { mapObject } from '../utils'
 
@@ -11,9 +12,7 @@ type DictionariesTopicsDefault = 'default' | DictionariesTopics
  * Подгружает и возвращает словари по тематике
  * @param {string} topic Тема
  */
-export function loadStore(
-  topic: DictionariesTopicsDefault
-): DictionariesStore {
+export const loadStore = function loadStore(topic: DictionariesTopicsDefault): DictionariesStore {
   const types = [
     ['прилагательное',          'adjectives'],
     ['заключение',              'conclusions'],
@@ -25,21 +24,12 @@ export function loadStore(
     ['глагол',                  'verbs'],
   ]
 
-  const dictionariesReducer = function dictionariesReducer(
-    topic:  string,
-    acc:    { [type: string]: any[] },
-    type:   string[],
-  ) {
-    return {
-      ...acc,
-      [type[0]]: require(`../dictionaries/${topic}/${type[1]}`).default
-    }
-  }
+  const dictionariesReducer = (topic:  string) => (acc: { [type: string]: any[] }, type: string[]) => ({
+    ...acc,
+    [type[0]]: require(`../dictionaries/${topic}/${type[1]}`).default
+  })
 
-  const dictionaries: { [type: string]: any[] } = types.reduce(
-    dictionariesReducer.bind(null, topic),
-    {},
-  )
+  const dictionaries: { [type: string]: any[] } = reduce(dictionariesReducer(topic), {}, types)
 
   const store: DictionariesStore = createStore(dictionaries)
   return store
@@ -50,43 +40,37 @@ export function loadStore(
  * @param  {...DictionariesStore} list Список хранилищ для комбинирования
  * @return {DictionariesStore}
  */
-export function combineStores(...list: DictionariesStore[]): DictionariesStore {
-  const dictionariesReducer = function dictionariesReducer(
-    acc:  DictionariesStore,
-    dict: DictionariesStore,
-  ): DictionariesStore {
-    const mapperOfStore = function mapperOfStore(
-      dict:  DictionariesStore,
-      value: DictionaryItem[],
-      key: string
-    ): DictionaryItem[] {
-      return {
-        ...value,
-        ...dict[key],
+export const combineStores = function combineStores(...list: DictionariesStore[]): DictionariesStore {
+  const combinedDictionary: DictionariesStore = reduce((acc: DictionariesStore, storeToMerge: DictionariesStore) => {
+    const mergedStore = { ...acc }
+
+    for (const item in storeToMerge) {
+      if (!storeToMerge.hasOwnProperty(item)) {
+        continue
       }
+
+      mergedStore[item] = [
+        ...(mergedStore[item] || []),
+        ...storeToMerge[item],
+      ]
     }
 
-    return mapObject(mapperOfStore.bind(dict), acc)
-  }
+    return mergedStore
+  }, {} as DictionariesStore, list)
 
-  const dictionaries: DictionariesStore = list.reduce(
-    dictionariesReducer,
-    {} as DictionariesStore
-  )
-
-  return dictionaries
+  return combinedDictionary
 }
 
 /**
- * Возвращает храниоища по указанным темам
+ * Возвращает хранилища по указанным темам
  * @param  {string[]} topics Список тем
  * @return {DictionariesStore}
  */
-export function getStore(
+export const getStore = function getStore(
   topics: DictionariesTopics[] = ['philosophy']
 ): DictionariesStore {
   const topicsWithdefault: DictionariesTopicsDefault[] = ['default', ...topics]
-  const dictionariesList = topicsWithdefault.map(item => loadStore(item))
+  const dictionariesList: DictionariesStore[] = topicsWithdefault.map(item => loadStore(item))
 
   return combineStores(...dictionariesList)
 }
