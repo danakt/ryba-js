@@ -41,21 +41,3 @@ export function getRandomItemFromArray<T>(arr: T[]): T {
 
   return randomItem
 }
-
-/**
- * Маппинг объекта
- * @param  {Function} fn  Маппер
- * @param  {object}   obj Объект
- * @return {object}
- */
-export function mapObject<T, TResult>(
-  fn:  (value: T, key: string, obj?: any) => TResult,
-  obj: { [prop: string]: T }
-): { [index: string]: TResult } {
-  return Object.keys(obj).reduce((acc, key) => {
-    return {
-      ...acc,
-      [key]: fn(obj[key], key, obj)
-    }
-  }, {})
-}

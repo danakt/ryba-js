@@ -1,6 +1,5 @@
-import { reduce } from 'ramda'
+import { reduce, map } from 'ramda'
 import { createStore, DictionariesStore, DictionaryItem } from 'text-generator-core'
-import { mapObject } from '../utils'
 
 /**
  * Типы тем
@@ -66,11 +65,9 @@ export const combineStores = function combineStores(...list: DictionariesStore[]
  * @param  {string[]} topics Список тем
  * @return {DictionariesStore}
  */
-export const getStore = function getStore(
-  topics: DictionariesTopics[] = ['philosophy']
-): DictionariesStore {
+export const getStore = function getStore(topics: DictionariesTopics[] = ['philosophy']): DictionariesStore {
   const topicsWithdefault: DictionariesTopicsDefault[] = ['default', ...topics]
-  const dictionariesList: DictionariesStore[] = topicsWithdefault.map(item => loadStore(item))
+  const dictionariesList: DictionariesStore[] = map(item => loadStore(item), topicsWithdefault)
 
   return combineStores(...dictionariesList)
 }

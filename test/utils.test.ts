@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { toPairs, randomBoolean, getRandomItemFromArray, mapObject } from '../src/utils'
+import { toPairs, randomBoolean, getRandomItemFromArray } from '../src/utils'
 
 /**
  * Превращение объекта в двумерный массив вида [ключ, значение][]
@@ -7,7 +7,7 @@ import { toPairs, randomBoolean, getRandomItemFromArray, mapObject } from '../sr
  */
 describe('Превращение объекта в массив', () => {
   it('Сравнение массива и результата превращения объекта', () => {
-  const testObject = {
+    const testObject = {
       param1: 'value',
       param2: 1337,
       param3: Symbol.for('somesymbol')
@@ -61,23 +61,5 @@ describe('Получение случайного значения из масс
     for (let i = 0; i < 1e3; i++) {
       expect(arr.indexOf(getRandomItemFromArray(arr))).to.not.eq(-1)
     }
-  })
-})
-
-/**
- * Маппинг объекта
- * @function mapObject
- */
-describe('Маппинг объекта', () => {
-  it('Возведение в квадрат каждого значения объекта', () => {
-    const targetObj = {
-      q: 1, w: 2, e: 5, r: 512, t: -200, y: -Infinity
-    }
-
-    const mockObj = {
-      q: 1, w: 4, e: 25, r: 262144, t: 40000, y: Infinity
-    }
-
-    expect(mapObject(item => item ** 2, targetObj)).to.deep.eq(mockObj)
   })
 })

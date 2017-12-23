@@ -52,7 +52,7 @@ describe('Комбинирование хранилищ словарей', () =>
     // Комбинирование
     const combinedStore = combineStores(defaultStore, philosophyStore)
 
-    // Попытка сравнить карты размеров хранилищ библиоьтек
+    // Попытка сравнить карты размеров хранилищ библиотек
     expect(map(item => item.length, combinedStore)).to.deep.eq(combinedStoreLengthMap)
   })
 })
