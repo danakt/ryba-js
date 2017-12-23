@@ -14,6 +14,10 @@
   version "8.5.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.2.tgz#83b8103fa9a2c2e83d78f701a9aa7c9539739aa5"
 
+"@types/ramda@^0.25.8":
+  version "0.25.8"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.8.tgz#d95e7e9a47ed4a0fcb1b4bbb7f6ffac71276c619"
+
 ansi-styles@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.0.tgz#c159b8d5be0f9e5a6f346dab94f16ce022161b88"
