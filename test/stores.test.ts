@@ -1,5 +1,8 @@
 import { expect } from 'chai'
+import { map, reduce, mapObjIndexed } from 'ramda'
 import { loadStore, combineStores } from '../src/statics/stores'
+import { DictionariesStore } from 'text-generator-core'
+import { equal } from 'assert';
 
 /**
  * Подгрузка словрей
@@ -34,11 +37,22 @@ describe('Подгрузка словрей', () => {
  */
 describe('Комбинирование хранилищ словарей', () => {
   it('Комбинирование хранилищ «default» и «philosophy»', () => {
-    const generalStore    = loadStore('default')
-    const philosophyStore = loadStore('philosophy')
+    type LengthMap = { [name: string]: number }
 
-    const combinedStore = combineStores(generalStore, philosophyStore)
-    console.log(combinedStore);
+    const defaultStore: DictionariesStore = loadStore('default')
+    const defaultStoreLengthMap: LengthMap = map(item => item.length, defaultStore)
 
+    const philosophyStore: DictionariesStore = loadStore('philosophy')
+    const philosophyStoreLengthMap: LengthMap = map(item => item.length, philosophyStore)
+
+    const combinedStoreLengthMap: LengthMap = mapObjIndexed((value: number, key: string): number => {
+      return defaultStoreLengthMap[key] + philosophyStoreLengthMap[key]
+    }, { ...defaultStoreLengthMap, ...philosophyStoreLengthMap })
+
+    // Комбинирование
+    const combinedStore = combineStores(defaultStore, philosophyStore)
+
+    // Попытка сравнить карты размеров хранилищ библиоьтек
+    expect(map(item => item.length, combinedStore)).to.deep.eq(combinedStoreLengthMap)
   })
 })
