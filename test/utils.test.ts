@@ -33,7 +33,7 @@ describe('Получение случайного логическго знач�
   })
 
   it('Проверка энтропии', () => {
-    const iterationNumber = 1e6
+    const iterationNumber = 1e5
 
     const result: any = {
       true: 0,
