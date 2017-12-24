@@ -25,8 +25,10 @@ describe('Подгрузка словрей', () => {
 
     expect(Object.keys(store).sort((a, b) => a > b ? 1 : -1)).to.deep.eq(dictionariesList)
 
-    for (let item of dictionariesList) {
-      expect(Array.isArray(store[item])).to.be.true
+    for (const item of dictionariesList) {
+      if (dictionariesList.hasOwnProperty(item)) {
+        expect(Array.isArray(store[item])).to.be.true
+      }
     }
   })
 })
