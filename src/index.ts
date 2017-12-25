@@ -1,15 +1,10 @@
-import {
-  generateSentence,
-  DictionariesStore,
-  SentenceElement,
-  DictionaryItem
-} from 'text-generator-core'
-
-import * as templates                         from './statics/templates'
-import { transformRules }                     from './statics/rules'
-import { getStore }                           from './statics/stores'
-import { toPairs, getRandomItemFromArray }    from './utils'
-import { getItemTransformer, TansformRules }  from './transform'
+import { generateSentence, DictionariesStore, SentenceElement, DictionaryItem } from 'text-generator-core'
+import { toPairs } from 'ramda'
+import * as templates from './statics/templates'
+import { transformRules } from './statics/rules'
+import { getStore } from './statics/stores'
+import { getRandomItemFromArray } from './utils'
+import { getItemTransformer, TansformRules } from './transform'
 
 /**
  * Создаёт функцию получения случайного шаблона

@@ -1,10 +1,10 @@
-import { toPairs }        from './utils'
+import { toPairs, reduce } from 'ramda'
 import { DictionaryItem } from 'text-generator-core'
 
 /**
  * Типы правил трансформации
  */
-export type TansformRule  = [
+export type TansformRule = [
   RegExp,
   { [value: string]: string }
 ] | [
@@ -15,7 +15,7 @@ export type TansformRule  = [
 export type TansformRules = { [prop: string]: TansformRule[] }
 
 /**
- * Возвращает функция для трансформации элементов
+ * Возвращает функцию для трансформации элементов
  * @param  {TansformRules} transformRules Правила трансформации
  * @return {Function}
  */
@@ -27,19 +27,19 @@ export function getItemTransformer(transformRules: TansformRules) {
    * @return {DictionaryItem}
    */
   return function transformItem(
-    props:  { [prop: string]: string },
+    props: { [prop: string]: string },
     target: DictionaryItem,
   ): DictionaryItem {
     const propsArr: [string, any][] = toPairs(props)
 
     const getPropsReducer = (transformRules: TansformRules) => {
       return (acc: DictionaryItem, prop: [string, string]): DictionaryItem => {
-        const [ propname, value ]: string[] = prop
+        const [propname, value]: string[] = prop
 
         const getRuleReducer = (value: string) => {
           return (acc: DictionaryItem, rule: TansformRule): DictionaryItem => {
 
-            const [ regExpr, { [value]: replacer } ] = rule
+            const [regExpr, { [value]: replacer }] = rule
             const targetRules: { [prop: string]: any } | undefined = rule[2]
 
             if (targetRules != null) {
@@ -63,10 +63,11 @@ export function getItemTransformer(transformRules: TansformRules) {
       }
     }
 
-    const outItem = propsArr.reduce(
+    const outItem: DictionaryItem = reduce(
       getPropsReducer(transformRules),
       target,
-    ) as DictionaryItem
+      propsArr
+    )
 
     return outItem
   }

@@ -1,28 +1,4 @@
 /**
- * Превращает объект в двумерный массив вида [ключ, значение][]
- * @param  {object} obj Объект
- * @return {Array}
- */
-export function toPairs<T>(obj: { [prop: string]: T }): [string, T][] {
-  const keys: string[] = Object.keys(obj)
-
-  const getKeysReducer = <T>(obj: { [prop: string]: T }) => {
-    return (acc: [string, T][], value: string): [string, T][] => {
-      const objectItem: T = obj[value]
-
-      return [
-        ...acc,
-        [value, objectItem]
-      ]
-    }
-  }
-
-  const pairs: [string, T][] = keys.reduce(getKeysReducer(obj), [])
-
-  return pairs
-}
-
-/**
  * Возвращает true или false случайным образом
  * @param  {?number} [chance=0.5] Шанс выпадения true
  * @return {boolean}
