@@ -1,27 +1,5 @@
 import { expect } from 'chai'
-import { toPairs, randomBoolean, getRandomItemFromArray } from '../src/utils'
-
-/**
- * Превращение объекта в двумерный массив вида [ключ, значение][]
- * @function toPairs
- */
-describe('Превращение объекта в массив', () => {
-  it('Сравнение массива и результата превращения объекта', () => {
-    const testObject = {
-      param1: 'value',
-      param2: 1337,
-      param3: Symbol.for('somesymbol')
-    }
-
-    const mockArray = [
-      ['param1', 'value'],
-      ['param2', 1337],
-      ['param3', Symbol.for('somesymbol')],
-    ]
-
-    expect(toPairs(testObject)).to.deep.eq(mockArray)
-  })
-})
+import { randomBoolean, getRandomItemFromArray } from '../src/utils'
 
 /**
  * Получение случайного логическго значения
