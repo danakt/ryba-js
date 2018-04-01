@@ -4,7 +4,7 @@ import { DictionaryItem } from 'text-generator-core'
 /**
  * Типы правил трансформации
  */
-export type TansformRule = [
+export type TransformRule = [
   RegExp,
   { [value: string]: string }
 ] | [
@@ -12,14 +12,14 @@ export type TansformRule = [
   { [value: string]: string },
   { [prop: string]: any }
 ]
-export type TansformRules = { [prop: string]: TansformRule[] }
+export type TransformRules = { [prop: string]: TransformRule[] }
 
 /**
  * Возвращает функцию для трансформации элементов
- * @param  {TansformRules} transformRules Правила трансформации
+ * @param  {TransformRules} transformRules Правила трансформации
  * @return {Function}
  */
-export function getItemTransformer(transformRules: TansformRules) {
+export function getItemTransformer(transformRules: TransformRules) {
   /**
    * Трансформирует элементы
    * @param  {object}         props  Параметры трансформации
@@ -32,12 +32,12 @@ export function getItemTransformer(transformRules: TansformRules) {
   ): DictionaryItem {
     const propsArr: [string, any][] = toPairs(props)
 
-    const getPropsReducer = (transformRules: TansformRules) => {
+    const getPropsReducer = (transformRules: TransformRules) => {
       return (acc: DictionaryItem, prop: [string, string]): DictionaryItem => {
         const [propname, value]: string[] = prop
 
         const getRuleReducer = (value: string) => {
-          return (acc: DictionaryItem, rule: TansformRule): DictionaryItem => {
+          return (acc: DictionaryItem, rule: TransformRule): DictionaryItem => {
 
             const [regExpr, { [value]: replacer }] = rule
             const targetRules: { [prop: string]: any } | undefined = rule[2]

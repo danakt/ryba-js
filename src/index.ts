@@ -4,14 +4,14 @@ import * as templates from './statics/templates'
 import { transformRules } from './statics/rules'
 import { getStore } from './statics/stores'
 import { getRandomItemFromArray } from './utils'
-import { getItemTransformer, TansformRules } from './transform'
+import { getItemTransformer, TransformRules } from './transform'
 
 /**
  * Создаёт функцию получения случайного шаблона
  * @param  {Array} sentenceCreatorsList Список гетеров шаблонов
  * @return {Function}
  */
-const createSentenceGetter = function createSentenceGetter(
+function createSentenceGetter(
   sentenceCreatorsList: [
     string,
     (store: DictionariesStore) => SentenceElement
@@ -19,9 +19,9 @@ const createSentenceGetter = function createSentenceGetter(
 ) {
   return function getTemplate(store: DictionariesStore): SentenceElement {
     const randomSentenceCreator = getRandomItemFromArray(sentenceCreatorsList)
-    const sentenceTempalte: SentenceElement = randomSentenceCreator[1](store)
+    const sentenceTemplate: SentenceElement = randomSentenceCreator[1](store)
 
-    return sentenceTempalte
+    return sentenceTemplate
   }
 }
 
@@ -42,7 +42,7 @@ const getTemplate: (store: DictionariesStore) => SentenceElement = (
  * @param {Function}          transformer Функция для трансформации
  *   зависимых элементов
  */
-export const getSentence = function getSentence(
+export function getSentence(
   store: DictionariesStore,
   transformer: (
     props: { [prop: string]: string },

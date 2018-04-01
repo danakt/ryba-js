@@ -66,8 +66,8 @@ export const combineStores = function combineStores(...list: DictionariesStore[]
  * @return {DictionariesStore}
  */
 export const getStore = function getStore(topics: DictionariesTopics[] = ['philosophy']): DictionariesStore {
-  const topicsWithdefault: DictionariesTopicsDefault[] = ['default', ...topics]
-  const dictionariesList: DictionariesStore[] = map(item => loadStore(item), topicsWithdefault)
+  const topicsWithDefault: DictionariesTopicsDefault[] = ['default', ...topics]
+  const dictionariesList: DictionariesStore[] = map(item => loadStore(item), topicsWithDefault)
 
   return combineStores(...dictionariesList)
 }

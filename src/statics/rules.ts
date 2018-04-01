@@ -1,10 +1,10 @@
-import { TansformRules } from '../transform'
+import { TransformRules } from '../transform'
 
 /**
  * Правила трансформации
- * @type {TansformRules}
+ * @type {TransformRules}
  */
-export const transformRules: TansformRules = {
+export const transformRules: TransformRules = {
   // Изменения по роду
   'род': [
     // Краткие прилагательные:
