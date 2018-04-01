@@ -24,6 +24,7 @@
   "bugs": {
     "url": "https://github.com/danakt/ryba-js/issues"
   },
+  "typings": "index.d.ts",
   "homepage": "https://github.com/danakt/ryba-js#readme",
   "dependencies": {
     "ramda": "^0.25.0",
