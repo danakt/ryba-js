@@ -54,7 +54,3 @@ export function getSentence(
 
   return sentence
 }
-
-for (let i = 0; i < 100; i++) {
-  console.log(getSentence(getStore(), getItemTransformer(transformRules)))
-}
