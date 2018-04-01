@@ -4,7 +4,6 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "sourceMap": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "removeComments": true,
