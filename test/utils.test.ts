@@ -1,4 +1,4 @@
-import { expect } from 'chai'
+import { expect }                                from 'chai'
 import { randomBoolean, getRandomItemFromArray } from '../src/utils'
 
 /**
@@ -14,8 +14,8 @@ describe('Получение случайного логическго знач�
     const iterationNumber = 1e5
 
     const result: any = {
-      true: 0,
-      false: 0,
+      true:  0,
+      false: 0
     }
 
     for (let i = 0; i < iterationNumber; i++) {

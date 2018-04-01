@@ -1,17 +1,12 @@
 import { toPairs, reduce } from 'ramda'
-import { DictionaryItem } from 'text-generator-core'
+import { DictionaryItem }  from 'text-generator-core'
 
 /**
  * Типы правил трансформации
  */
-export type TransformRule = [
-  RegExp,
-  { [value: string]: string }
-] | [
-  RegExp,
-  { [value: string]: string },
-  { [prop: string]: any }
-]
+export type TransformRule
+  = | [RegExp, { [value: string]: string }]
+  | [RegExp, { [value: string]: string }, { [prop: string]: any }]
 export type TransformRules = { [prop: string]: TransformRule[] }
 
 /**
@@ -28,7 +23,7 @@ export function getItemTransformer(transformRules: TransformRules) {
    */
   return function transformItem(
     props: { [prop: string]: string },
-    target: DictionaryItem,
+    target: DictionaryItem
   ): DictionaryItem {
     const propsArr: [string, any][] = toPairs(props)
 
@@ -38,7 +33,6 @@ export function getItemTransformer(transformRules: TransformRules) {
 
         const getRuleReducer = (value: string) => {
           return (acc: DictionaryItem, rule: TransformRule): DictionaryItem => {
-
             const [regExpr, { [value]: replacer }] = rule
             const targetRules: { [prop: string]: any } | undefined = rule[2]
 
@@ -51,11 +45,7 @@ export function getItemTransformer(transformRules: TransformRules) {
               }
             }
 
-            return [
-              acc[0].replace(regExpr, replacer),
-              acc[1],
-              acc[2],
-            ]
+            return [acc[0].replace(regExpr, replacer), acc[1], acc[2]]
           }
         }
 

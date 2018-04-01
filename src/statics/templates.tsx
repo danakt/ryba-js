@@ -1,8 +1,11 @@
 /**
  * Шаблоны предложений
  */
-import { createElement } from 'text-generator-core'
-import { DictionariesStore, SentenceElement } from 'text-generator-core'
+import {
+  createElement, // eslint-disable-line no-unused-vars
+  DictionariesStore,
+  SentenceElement
+} from 'text-generator-core'
 import { randomBoolean, getRandomItemFromArray } from '../utils'
 
 /**
@@ -10,46 +13,51 @@ import { randomBoolean, getRandomItemFromArray } from '../utils'
  */
 export const template0 = (store: DictionariesStore): SentenceElement => (
   <sentence>
-    {randomBoolean(1 / 3) &&
+    {randomBoolean(1 / 3) && (
       <fragment>
         <word for="word1" type="прилагательное" store={store} />
       </fragment>
-    }
-
-    <fragment><word id="word1" type="существительное" store={store} /></fragment>
-
-    {randomBoolean(1 / 3) &&
-      <fragment>, <word type="вводная фраза" store={store} />,</fragment>
-    }
-
-    {randomBoolean(1 / 7) &&
-      (
-        <fragment>
-          , <word type="деепричастие" store={store} />,
-          <word type="глагол" store={store} />
-        </fragment>
-      ) || getRandomItemFromArray([
-        <fragment><word type="глагол" store={store} /></fragment>,
-        (
-          <fragment>
-            <word type="глагол" store={store} />
-            и <word type="глагол" store={store} />
-          </fragment>
-        ),
-      ])
-    }
+    )}
 
     <fragment>
-      <word type="существительное"
-        store={store}
-        props={{ 'падеж': 'дательный' }} />
+      <word id="word1" type="существительное" store={store} />
     </fragment>
 
-    {randomBoolean(1 / 15) &&
+    {randomBoolean(1 / 3) && (
+      <fragment>
+        , <word type="вводная фраза" store={store} />,
+      </fragment>
+    )}
+
+    {(randomBoolean(1 / 7) && (
+      <fragment>
+        , <word type="деепричастие" store={store} />,
+        <word type="глагол" store={store} />
+      </fragment>
+    ))
+      || getRandomItemFromArray([
+        <fragment>
+          <word type="глагол" store={store} />
+        </fragment>,
+        <fragment>
+          <word type="глагол" store={store} />
+          и <word type="глагол" store={store} />
+        </fragment>
+      ])}
+
+    <fragment>
+      <word
+        type="существительное"
+        store={store}
+        props={{ падеж: 'дательный' }}
+      />
+    </fragment>
+
+    {randomBoolean(1 / 15) && (
       <fragment>
         <word type="заключение" store={store} />
       </fragment>
-    }
+    )}
 
     <fragment>.</fragment>
   </sentence>
@@ -60,53 +68,55 @@ export const template0 = (store: DictionariesStore): SentenceElement => (
  */
 export const template1 = (store: DictionariesStore): SentenceElement => (
   <sentence>
-    {randomBoolean(1 / 3) && getRandomItemFromArray([
-      <fragment><word type="начальная вводная фраза" store={store} /></fragment>,
-      (
+    {randomBoolean(1 / 3)
+      && getRandomItemFromArray([
+        <fragment>
+          <word type="начальная вводная фраза" store={store} />
+        </fragment>,
         <fragment>
           <word type="вводная фраза" store={store} />,
         </fragment>
-      )
-    ])}
+      ])}
 
-    {randomBoolean(1 / 3) &&
+    {randomBoolean(1 / 3) && (
       <fragment>
         <word for="word1" type="прилагательное" store={store} />
       </fragment>
-    }
+    )}
 
     <fragment>
       <word id="word1" type="существительное" store={store} />
     </fragment>
 
-    {randomBoolean(1 / 7) &&
-      (
+    {(randomBoolean(1 / 7) && (
+      <fragment>
+        , <word type="деепричастие" store={store} />,
+        <word type="глагол" store={store} />
+      </fragment>
+    ))
+      || getRandomItemFromArray([
         <fragment>
-          , <word type="деепричастие" store={store} />,
           <word type="глагол" store={store} />
+        </fragment>,
+        <fragment>
+          <word type="глагол" store={store} />
+          и <word type="глагол" store={store} />
         </fragment>
-      ) || getRandomItemFromArray([
-        <fragment><word type="глагол" store={store} /></fragment>,
-        (
-          <fragment>
-            <word type="глагол" store={store} />
-            и <word type="глагол" store={store} />
-          </fragment>
-        ),
-      ])
-    }
+      ])}
 
     <fragment>
-      <word type="существительное"
+      <word
+        type="существительное"
         store={store}
-        props={{ 'падеж': 'дательный' }} />
+        props={{ падеж: 'дательный' }}
+      />
     </fragment>
 
-    {randomBoolean(1 / 15) &&
+    {randomBoolean(1 / 15) && (
       <fragment>
         <word type="заключение" store={store} />
       </fragment>
-    }
+    )}
 
     <fragment>.</fragment>
   </sentence>
@@ -117,18 +127,19 @@ export const template1 = (store: DictionariesStore): SentenceElement => (
  */
 export const template2 = (store: DictionariesStore): SentenceElement => (
   <sentence>
-    {randomBoolean(1 / 10) && getRandomItemFromArray([
-      'Но',
-      <fragment>
-        <word type="вводная фраза" store={store} />
-      </fragment>
-    ])}
+    {randomBoolean(1 / 10)
+      && getRandomItemFromArray([
+        'Но',
+        <fragment>
+          <word type="вводная фраза" store={store} />
+        </fragment>
+      ])}
 
-    {randomBoolean() &&
+    {randomBoolean() && (
       <fragment>
         <word type="прилагательное" store={store} for="noun" />
       </fragment>
-    }
+    )}
 
     <fragment>
       <word type="существительное" store={store} id="noun" />

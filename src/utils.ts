@@ -12,7 +12,7 @@ export function randomBoolean(chance: number = 1 / 2) {
  * @param {any[]} arr Массив
  */
 export function getRandomItemFromArray<T>(arr: T[]): T {
-  const randomIndex: number = Math.random() * arr.length | 0
+  const randomIndex: number = (Math.random() * arr.length) | 0
   const randomItem: T = arr[randomIndex]
 
   return randomItem

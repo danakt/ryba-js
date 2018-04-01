@@ -19,7 +19,7 @@ exports.loadStore = function loadStore(topic) {
         ['вводная фраза', 'introductory'],
         ['существительное', 'nouns'],
         ['краткое прилагательное', 'shortAdjectives'],
-        ['глагол', 'verbs'],
+        ['глагол', 'verbs']
     ];
     var dictionariesReducer = function (topic) { return function (acc, type) {
         return (__assign({}, acc, (_a = {}, _a[type[0]] = require("../dictionaries/" + topic + "/" + type[1]).default, _a)));
@@ -48,7 +48,9 @@ exports.combineStores = function combineStores() {
 };
 exports.getStore = function getStore(topics) {
     if (topics === void 0) { topics = ['philosophy']; }
-    var topicsWithDefault = ['default'].concat(topics);
+    var topicsWithDefault = [
+        'default'
+    ].concat(topics);
     var dictionariesList = ramda_1.map(function (item) { return exports.loadStore(item); }, topicsWithDefault);
     return exports.combineStores.apply(void 0, dictionariesList);
 };

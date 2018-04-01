@@ -6,7 +6,7 @@ function randomBoolean(chance) {
 }
 exports.randomBoolean = randomBoolean;
 function getRandomItemFromArray(arr) {
-    var randomIndex = Math.random() * arr.length | 0;
+    var randomIndex = (Math.random() * arr.length) | 0;
     var randomItem = arr[randomIndex];
     return randomItem;
 }

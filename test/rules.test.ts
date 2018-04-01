@@ -1,5 +1,5 @@
-import { expect } from 'chai'
-import { transformRules } from '../src/statics/rules'
+// import { expect }         from 'chai'
+// import { transformRules } from '../src/statics/rules'
 
 /**
  * @todo Сделать проверку структуры

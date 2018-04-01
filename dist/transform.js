@@ -18,11 +18,7 @@ function getItemTransformer(transformRules) {
                                 }
                             }
                         }
-                        return [
-                            acc[0].replace(regExpr, replacer),
-                            acc[1],
-                            acc[2],
-                        ];
+                        return [acc[0].replace(regExpr, replacer), acc[1], acc[2]];
                     };
                 };
                 return transformRules[propname].reduce(getRuleReducer(value), acc);
