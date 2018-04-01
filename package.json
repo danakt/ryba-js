@@ -2,7 +2,7 @@
   "name": "ryba-js",
   "version": "1.0.0",
   "description": "Russian filler text generator",
-  "main": "bin/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "babel": "babel src --out-dir bin",
     "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register -c"
