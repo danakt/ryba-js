@@ -1,2 +1,7 @@
-/node_modules
+# dirs
+.vscode/
+node_modules/
+
+# files
 npm-debug.log
+package-lock.json

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "removeComments": true,
+    "lib": ["es5", "es6", "dom"],
+    "jsx": "react",
+    "jsxFactory": "createElement"
+  },
+  "exclude": [
+    "node_modules",
+    "./test/"
+  ]
+}
